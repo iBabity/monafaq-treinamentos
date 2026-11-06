@@ -1,0 +1,8 @@
+import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
+export const versionInfo=sqliteTable("version_info",{id:text("id").primaryKey(),version:text("version").notNull(),date:text("date").notNull()});
+export const articles=sqliteTable("articles",{id:text("id").primaryKey(),system:text("system").notNull(),category:text("category").notNull(),title:text("title").notNull(),body:text("body").notNull(),updatedAt:text("updated_at").notNull(),createdAt:text("created_at").notNull().default(""),images:text("images").notNull().default("[]")});
+export const subjects=sqliteTable("subjects",{id:text("id").primaryKey(),system:text("system").notNull(),name:text("name").notNull()});
+export const deletedArticles=sqliteTable("deleted_articles",{id:text("id").primaryKey(),deletedAt:text("deleted_at").notNull()});
+export const auditLog=sqliteTable("audit_log",{id:text("id").primaryKey(),createdAt:text("created_at").notNull(),actorId:text("actor_id").notNull(),actorEmail:text("actor_email").notNull(),action:text("action").notNull(),details:text("details").notNull()});
+export const auditAttempts=sqliteTable("audit_attempts",{actorId:text("actor_id").primaryKey(),attempts:integer("attempts").notNull(),startedAt:integer("started_at").notNull()});
+export const tickets=sqliteTable("tickets",{id:text("id").primaryKey(),system:text("system").notNull(),title:text("title").notNull(),description:text("description").notNull(),reference:text("reference").notNull().default(""),link:text("link").notNull().default(""),status:text("status").notNull(),createdBy:text("created_by").notNull(),createdAt:text("created_at").notNull(),updatedAt:text("updated_at").notNull()});

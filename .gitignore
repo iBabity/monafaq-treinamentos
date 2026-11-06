@@ -1,0 +1,16 @@
+node_modules/
+.next/
+.vinext/
+dist/
+.wrangler/
+.sites-runtime/
+.env*
+.dev.vars*
+*.pem
+*.key
+*.log
+*.dump
+*.backup
+backup/
+profiles/
+.codex-run/

@@ -1,0 +1,15 @@
+.student-mode-control { flex-shrink: 0; white-space: nowrap; min-height: 36px; }
+.student-mode-control svg { width: 18px; height: 18px; flex-shrink: 0; }
+.student-mode-control[aria-pressed="true"] { border: 1px solid var(--accent-primary); }
+@media (max-width: 900px) {
+  .has-student-mode .topbar { padding: 0 12px !important; gap: 8px; }
+  .has-student-mode .topbar-right,
+  .has-student-mode .topbar-right > div { gap: 6px !important; }
+  .has-student-mode .topbar .student-info,
+  .has-student-mode .topbar .admin-page-title,
+  .has-student-mode .topbar .breadcrumb,
+  .has-student-mode .topbar .progress-pill,
+  .has-student-mode .topbar .sidebar-brand-name { display: none; }
+  .has-student-mode .topbar .brand-logo-sm { max-width: 85px; }
+  .student-mode-control { padding: 6px 8px; font-size: 12px; }
+}

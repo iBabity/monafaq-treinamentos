@@ -1,0 +1,34 @@
+{
+  "name": "next-temp",
+  "version": "0.3.3",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test:manuals": "node --test --test-concurrency=1 scripts/manuals.test.cjs scripts/manual-html.test.cjs scripts/content-sharing.test.cjs",
+    "db-setup": "node scripts/run_setup_node.js",
+    "db-restore-content": "node scripts/restore-training-content.js"
+  },
+  "dependencies": {
+    "@tiptap/extension-image": "^3.31.3",
+    "@tiptap/extension-text-align": "^3.31.3",
+    "@tiptap/extension-text-style": "^3.31.3",
+    "@tiptap/pm": "^3.31.3",
+    "@tiptap/react": "^3.31.3",
+    "@tiptap/starter-kit": "^3.31.3",
+    "next": "^16.3.4",
+    "pdf-lib": "1.17.1",
+    "pg": "^8.20.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "sanitize-html": "^2.17.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.4",
+    "tailwindcss": "^4.3.3"
+  }
+}

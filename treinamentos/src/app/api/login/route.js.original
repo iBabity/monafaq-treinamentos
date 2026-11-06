@@ -1,0 +1,36 @@
+import { NextResponse } from 'next/server';
+import { createSessionToken, setSessionCookie } from '@/utils/auth';
+import { ensureTrainingUserFromOne, loginWithOne, oneSessionFields } from '@/utils/oneAuth';
+
+export async function POST(req) {
+  try {
+    const { email, password, tenantId, businessGroupId } = await req.json();
+    const normalizedEmail = email?.trim().toLowerCase();
+
+    if (!normalizedEmail || !password) {
+      return NextResponse.json({ error: 'Informe e-mail e senha.' }, { status: 400 });
+    }
+
+    const oneAuth = await loginWithOne({
+      email: normalizedEmail,
+      password,
+      tenantId,
+      businessGroupId,
+    });
+    const portalContext = oneAuth.portalContext || {};
+    const user = await ensureTrainingUserFromOne(oneAuth, portalContext, businessGroupId);
+    const sessionUser = {
+      ...user,
+      ...oneSessionFields(oneAuth, portalContext, businessGroupId),
+    };
+    const response = NextResponse.json(user);
+    setSessionCookie(response, createSessionToken(sessionUser));
+    return response;
+  } catch (err) {
+    console.error('[login]', err);
+    return NextResponse.json(
+      { error: err.message || 'Nao foi possivel concluir o login pelo One.' },
+      { status: err.status || 500 }
+    );
+  }
+}
